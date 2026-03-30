@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postcard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; }
+    html, body {
+      background: #1a1a1c;
+      color: #333; height: 100vh; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    body { font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, serif; }
+
+    #postcard {
+      position: relative;
+      width: 800px;
+      height: 500px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    #stage { position: absolute; inset: 0; overflow: hidden; }
+
+    .line {
+      position: absolute; white-space: pre; z-index: 1; color: #333;
+      user-select: text; -webkit-user-select: text;
+    }
+
+    .headline-line {
+      position: absolute; white-space: pre;
+      font-weight: 700; color: #000; letter-spacing: -0.5px; z-index: 2;
+      user-select: text; -webkit-user-select: text;
+    }
+
+    .drop-cap {
+      position: absolute; pointer-events: none; z-index: 2;
+      font-weight: 700; color: #c4a35a;
+    }
+
+      .photo-frame {
+        position: absolute;
+        box-sizing: border-box;
+        cursor: grab;
+        z-index: 10;
+        transition: transform 0.2s ease;
+      }
+      .photo-frame:hover {
+        transform: scale(1.02);
+      }
+      .photo-frame:active {
+        cursor: grabbing;
+      }
+      .upload-button {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.8);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s ease, transform 0.2s ease, background 0.2s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        color: #333;
+        z-index: 20;
+      }
+      .photo-frame:hover .upload-button {
+        opacity: 1;
+      }
+      .upload-button:hover {
+        transform: scale(1.1);
+        background: rgba(255, 255, 255, 1);
+      }
+      .upload-button svg {
+        width: 18px;
+        height: 18px;
+        pointer-events: none;
+      }
+    .pullquote-box {
+      position: absolute; pointer-events: none; z-index: 3;
+      border-left: 3px solid #6b5a3d; padding-left: 14px;
+    }
+    .pullquote-line {
+      position: absolute; white-space: pre;
+      font-style: italic; color: #8a734e;
+      user-select: text; -webkit-user-select: text;
+    }
+
+    @media (max-width: 840px) {
+      #postcard {
+        width: 95vw;
+        height: 60vh;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="postcard">
+    <div id="stage"></div>
+  </div>
+  <script type="module" src="./postcard.ts"></script>
+</body>
+</html>
